@@ -8,7 +8,7 @@ public class Lesson8 {
         System.out.println(findSymbolOccurance("AbraKadabra", 'a'));
         System.out.println(findWordPosition("Apollon", "p"));
         System.out.println(stringReverse("Hello"));
-        System.out.println(isPalindrom(""));
+        System.out.println(isPalindrom("Ara"));
     }
 
     public static int findWordPosition(String source,String target){
@@ -21,7 +21,7 @@ public class Lesson8 {
         for(int i = 0 , k = 0; i < letSource.length-letTarget.length+1 ; i++){
             if(letSource[i] == letTarget[k]){
                 index = i;
-                if(letTarget.length == 1){
+                if(letTarget.length == 1){ // check if we were given one single character in a line
                     break;
                 }
                 for(int j = i+1 , l = k+1; l < letTarget.length ;j++, l++ ){
@@ -45,19 +45,14 @@ public class Lesson8 {
         return true;
     }
 
-
-    public static String  stringReverse(String str) {
-        if(str.length() == 0){    //or use method .isEmpty()
-            System.out.println("String is empty");
+    public static String  stringReverse(String str){
+        char[] chars = str.toCharArray();
+        char[] reversedChars = new char[chars.length];
+        for(int i = 0 ; i< chars.length ; i++){
+            reversedChars[reversedChars.length-1-i] = chars[i];
         }
-        char [] ch = str.toCharArray();
-        StringBuilder strBuild = new StringBuilder();
-        for(int i = ch.length - 1; i >= 0; i--) {
-            char temp = ch[i];
-            strBuild.append(temp);
-        }
-        return strBuild.toString();
-
+        String  strRevers = new String(reversedChars);
+        return strRevers;
     }
 
 
@@ -65,7 +60,6 @@ public class Lesson8 {
     public static int findSymbolOccurance(String str, char ch) {
         int count = 0;
         if (!str.isEmpty()) {
-            str = str.toLowerCase();
             char[] letters = str.toCharArray();
             for (int i = 0; i < letters.length; i++) {
                 if (letters[i] == ch) {
