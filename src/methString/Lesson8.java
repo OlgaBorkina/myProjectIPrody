@@ -36,9 +36,9 @@ public class Lesson8 {
     }
 
     public static boolean isPalindrom(String str) {
-        char[] chars = str.toCharArray();
-        for (int i = 0; i < chars.length / 2; i++) {
-            if (chars[i] != chars[chars.length - 1 - i]) {
+        int size = str.length();
+        for (int i = 0; i < size / 2; i++) {
+            if (str.charAt(i) != str.charAt(size - 1 - i)) {
                 return false;
             }
         }
@@ -67,7 +67,7 @@ public class Lesson8 {
                 }
             }
         }
-        return count != 0 ? count : -1;
+        return count;
 
     }
 }
