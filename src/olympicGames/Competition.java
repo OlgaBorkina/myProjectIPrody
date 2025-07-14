@@ -9,7 +9,7 @@ public class Competition {
     new Cat("barsik", 45,50,0.5),
     new Robot("JVM1",789,20000,10)
     };
-
+       // null
 
     Obstacle [] obstacles = {
             new Wall(2.2),
