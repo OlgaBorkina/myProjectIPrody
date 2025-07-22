@@ -5,7 +5,7 @@ import calculator.exceptions.ArraySizeException;
 
 public class Main {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws ArraySizeException {
         String[][] array = {
                 {"1", "2", "3", "4"},
                 {"5", "6", "7", "8"},
@@ -13,10 +13,12 @@ public class Main {
                 {"13", "14", "x", "16"}
         };
 
-        try{
-            int result = ArrayValueCalculator.doCalculator(array);
+        int result = ArrayValueCalculator.doCalculator(array);
+
+        try {
+            result = ArrayValueCalculator.doCalculator(array);
             System.out.println("Sum of all array values: " + result);
-        }catch (ArraySizeException | ArrayDataException e){
+        } catch (ArraySizeException | ArrayDataException e) {
             System.err.println("Calculation error: " + e.getMessage());
 
         }
