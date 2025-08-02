@@ -1,16 +1,16 @@
 package attandanceLogger;
 
 public class Visitor {
-    String user_id;
+    String userId;
     String timeStamp;
 
 
-    public Visitor(String user_id, String timeStamp) {
-        this.user_id = user_id;
+    public Visitor(String userId, String timeStamp) {
+        this.userId = userId;
         this.timeStamp = timeStamp;
     }
     public String getUser_id() {
-        return user_id;
+        return userId;
     }
     public String getTimeStamp() {
         return timeStamp;
@@ -18,6 +18,6 @@ public class Visitor {
 
     @Override
     public String toString() {
-        return user_id + "-> " + timeStamp;
+        return userId + "-> " + timeStamp;
     }
 }

@@ -4,12 +4,17 @@ import java.util.*;
 
 public class VisitorLogger {
     List<Visitor> visitors;
+    Map<String,Integer> hourStats = new HashMap<>();
 
     public VisitorLogger() {
         visitors = new ArrayList<>();
     }
     public void addVisitor(String user_id, String timeStamp) {
-        visitors.add(new Visitor(user_id, timeStamp));
+        Visitor visitor = new Visitor(user_id,timeStamp);
+        visitors.add(visitor);
+
+        String hour = visitor.getTimeStamp().split(":")[0];
+        hourStats.put(hour, hourStats.getOrDefault(hour, 0) + 1);
     }
 
     public Map<String,Integer> frequencyOfVisits(){
@@ -21,27 +26,16 @@ public class VisitorLogger {
     }
 
     public String popularTimeToVisitOffice(){
-        Map<String,Integer> popularTime = new HashMap<>();
-        for(Visitor v : visitors){
-            String strTime = v.getTimeStamp();
-            String[] parts = strTime.split(":");
-            String hour = parts[0];
-            popularTime.put(hour,popularTime.getOrDefault(hour,0) + 1);
-        }
-        Collection<Integer> listTime = popularTime.values();
-        Integer temp = 0;
-        for(Integer i : listTime){
-            if(i> temp){
-                temp = i;
+        String popularHour = null;
+        int max = 0;
+
+        for (Map.Entry<String, Integer> entry : hourStats.entrySet()) {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                popularHour = entry.getKey();
             }
         }
-        String popTime = null;
-         for(Map.Entry<String,Integer> entry : popularTime.entrySet()){
-             if(entry.getValue().equals(temp)){
-                 popTime =  entry.getKey();
-             }
-         }
-        return popTime + ":00 (" + temp + " visits)";
+        return popularHour + ":00 ";
 
     }
 
